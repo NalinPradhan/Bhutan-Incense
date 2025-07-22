@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
 const menuItems = [
@@ -17,13 +18,14 @@ const Navbar: React.FC = () => {
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   // Set initial Y position for menu items
-  useEffect(() => {
+  useGSAP(() => {
     if (itemRefs.current) {
       gsap.set(itemRefs.current, { y: 100, opacity: 0 });
     }
-  }, []);
+  });
 
-  useEffect(() => {
+  // Handle menu animation based on open state
+  useGSAP(() => {
     if (open) {
       // Show menu screen
       if (menuScreenRef.current) {

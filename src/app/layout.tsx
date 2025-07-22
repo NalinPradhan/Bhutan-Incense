@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${geologica.variable} ${roboto.variable}  ${cormorantUpright.variable}`}
+      className={`scroll-smooth ${geologica.variable} ${roboto.variable}  ${cormorantUpright.variable}`}
       suppressHydrationWarning={true}
       lang="en"
     >
