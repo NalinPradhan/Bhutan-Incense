@@ -3,7 +3,7 @@ import React from "react";
 
 const Product = () => {
   return (
-    <div className="relative inline-block w-full max-w-[200px] sm:max-w-[200px] max-sm:max-w-[60px]">
+    <div className="relative  inline-block w-full max-w-[200px] sm:max-w-[200px] max-sm:max-w-[60px]">
       <span className="relative z-10 block">
         <Image
           width={200}

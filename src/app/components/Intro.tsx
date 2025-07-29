@@ -5,38 +5,86 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
 import Image from "next/image";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, SplitText);
 
 const Intro = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const washi = useRef<HTMLImageElement>(null);
-  useGSAP(() => {
-    if (isVisible) {
-      gsap.fromTo(
-        washi.current,
-        {
-          rotate: 0,
-          opacity: 0,
-        },
-        {
-          rotate: 32,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "top 20%",
-            scrub: true,
-            markers: true,
+  const containerRef = useRef<HTMLDivElement>(null);
+  const para1 = useRef<HTMLParagraphElement>(null);
+  const para2 = useRef<HTMLParagraphElement>(null);
+  const para3 = useRef<HTMLParagraphElement>(null);
+  const para4 = useRef<HTMLParagraphElement>(null);
+  useGSAP(
+    () => {
+      gsap.set(washi.current, {
+        opacity: 1,
+        rotation: 0,
+      });
+
+      if (isVisible) {
+        gsap.fromTo(
+          washi.current,
+          {
+            rotate: 0,
+            opacity: 0,
           },
+          {
+            rotate: 82,
+            opacity: 1,
+            duration: 1,
+            ease: "ease.inOut",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top bottom",
+              end: "top 20%",
+              scrub: true,
+            },
+          }
+        );
+      }
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%", // Animation starts when top of container is 80% down the viewport
+          end: "bottom 20%", // Animation completes when bottom of container is 20% down the viewport
+          toggleActions: "play none none reverse", // play on enter, reverse on leave
+          scrub: 1, // Smooth scrubbing
+        },
+        scrub: true,
+      });
+      tl.to(washi.current, {
+        rotation: 44,
+        duration: 3,
+        ease: "power2.inOut",
+      });
+      [para1, para2, para3, para4].forEach((ref, idx) => {
+        if (ref.current) {
+          gsap.fromTo(
+            ref.current,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              delay: idx * 0.2,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ref.current,
+                start: "top 80%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
         }
-      );
-    }
-  }, [isVisible]);
+      });
+    },
+    { scope: containerRef }
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,19 +112,28 @@ const Intro = () => {
 
   return (
     <section id="s2" ref={sectionRef}>
-      <main className="px-4 md:px-8 lg:px-12">
+      <div className="px-4 md:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Main content */}
             <div className="space-y-6 w-full md:ml-40">
-              <h2 className="text-xl md:text-[32px] font-[family-name:var(--font-cormorant)]">
+              <h2
+                ref={para1}
+                className=" text-xl md:text-[32px] font-[family-name:var(--font-cormorant)]"
+              >
                 Light, Breathe, Awaken.
               </h2>
               <div className="text-sm leading-6 tracking-[0.64px]">
-                <p className="text-[#716B6B] pl-10 font-[family-name:var(--font-roboto)]">
+                <p
+                  ref={para2}
+                  className="text-[#565151]  pl-10 font-[family-name:var(--font-roboto)]"
+                >
                   Crafted for sanctifying your space.
                 </p>
-                <p className="text-[#716B6B] mt-6 pl-10 md:w-85 font-[family-name:var(--font-roboto)]">
+                <p
+                  ref={para3}
+                  className="text-[#565151] mt-6 pl-10 md:w-85 font-[family-name:var(--font-roboto)]"
+                >
                   This incense powder has been manufactured using age-old
                   indigenous medical ingredients and other aromatic herbs and
                   spices. These herbs and spices are valued as a religious
@@ -84,37 +141,44 @@ const Intro = () => {
                   beings to overcome stress, many forms of sickness and is good
                   for meditation.
                 </p>
-                <p className="text-[#ACA7A7] text-xs  font-extralight mt-6 pl-10 md:w-85 font-[family-name:var(--font-roboto)]">
+                <p
+                  ref={para4}
+                  className="text-[#ACA7A7] text-xs  font-extralight mt-6 pl-10 md:w-85 font-[family-name:var(--font-roboto)]"
+                >
                   Kuengacholing Incense Powder is 100% natural, handmade, and
                   free from chemicals or artificial fragrances.
                 </p>
               </div>
             </div>
             {/* Right: Product image */}
-            <div className="flex justify-center relative">
+            <div
+              ref={containerRef}
+              className="flex justify-center relative md:bottom-46 bottom-36"
+            >
               <Image
                 alt="washi"
                 src="/decorative elements/product bg.png"
                 width={601}
                 height={574}
                 ref={washi}
-                className={`absolute w-full h-auto max-w-[501px] max-h-[474px] max-sm:max-w-[300px] max-sm:max-h-[300px] -z-10 transition-all duration-1000 ease-in-out transform ${
-                  isVisible ? "opacity-100 rotate-12" : "opacity-0 rotate-0"
-                }`}
+                className={`absolute md:top-7 top-36 w-full h-auto max-w-[501px] max-h-[474px] max-sm:max-w-[300px] max-sm:max-h-[300px] -z-10`}
               />
               <span
-                className={`relative top-20 scale-145 will-change-transform transition-all duration-1000 ease-in-out transform ${
-                  isVisible
-                    ? "opacity-100 -translate-y-8"
-                    : "opacity-0 translate-y-4"
-                }`}
+                className={`relative top-50 md:top-34 scale-145 md:scale-160 `}
               >
                 <Product />
               </span>
             </div>
           </div>
         </div>
-      </main>
+      </div>
+      <Image
+        alt="washi"
+        src="/decorative elements/blur bg left.png"
+        width={200}
+        height={200}
+        className="top-100 "
+      />
     </section>
   );
 };

@@ -1,6 +1,7 @@
 // app/page.tsx
 import Header from "./components/Header";
 import Intro from "./components/Intro";
+import Khorlo from "./components/Khorlo";
 import Navbar from "./components/Navbar";
 
 export default function HomePage() {
@@ -11,6 +12,7 @@ export default function HomePage() {
       <Navbar />
       <Header />
       <Intro />
+      <Khorlo />
     </div>
   );
 }

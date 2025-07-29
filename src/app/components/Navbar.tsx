@@ -82,6 +82,7 @@ const Navbar: React.FC = () => {
             <Image
               src="/hamburger.svg"
               alt="Open menu"
+              className="md:scale-150"
               width={16}
               height={16}
             />
@@ -91,7 +92,13 @@ const Navbar: React.FC = () => {
               open ? "scale-100 opacity-100" : "scale-0  opacity-0"
             }`}
           >
-            <Image src="/close.svg" alt="Close menu" width={16} height={16} />
+            <Image
+              src="/close.svg"
+              alt="Close menu"
+              className="md:scale-150"
+              width={16}
+              height={16}
+            />
           </span>
         </button>
         {/* Overlay menu */}
