@@ -111,12 +111,12 @@ const Intro = () => {
   }, []);
 
   return (
-    <section id="s2" ref={sectionRef}>
-      <div className="px-4 md:px-8 lg:px-12">
+    <section id="s2" className="md:mb-36" ref={sectionRef}>
+      <div className="px-4 md:px-8 lg:px-12 ">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Main content */}
-            <div className="space-y-6 w-full md:ml-40">
+            <div className="space-y-6 w-full pr-15 md:ml-40">
               <h2
                 ref={para1}
                 className=" text-xl md:text-[32px] font-[family-name:var(--font-cormorant)]"
@@ -153,7 +153,7 @@ const Intro = () => {
             {/* Right: Product image */}
             <div
               ref={containerRef}
-              className="flex justify-center relative md:bottom-46 bottom-36"
+              className="flex justify-center relative sm:mt-10 md:bottom-46 bottom-36"
             >
               <Image
                 alt="washi"
@@ -161,7 +161,8 @@ const Intro = () => {
                 width={601}
                 height={574}
                 ref={washi}
-                className={`absolute md:top-7 top-36 w-full h-auto max-w-[501px] max-h-[474px] max-sm:max-w-[300px] max-sm:max-h-[300px] -z-10`}
+                quality={100}
+                className={`absolute  md:top-7 top-36 w-full h-auto max-w-[701px] max-h-[674px] max-sm:max-w-[300px] max-sm:max-h-[300px] -z-10`}
               />
               <span
                 className={`relative top-50 md:top-34 scale-145 md:scale-160 `}
@@ -177,7 +178,16 @@ const Intro = () => {
         src="/decorative elements/blur bg left.png"
         width={200}
         height={200}
+        quality={100}
         className="top-100 "
+      />
+      <Image
+        alt="blur background"
+        src="/decorative elements/blur bg.png"
+        width={250}
+        height={250}
+        quality={100}
+        className="md:h-[450] z-30 -right-0  absolute top-[50em] "
       />
     </section>
   );

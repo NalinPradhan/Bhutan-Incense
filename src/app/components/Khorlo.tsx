@@ -16,7 +16,8 @@ const Khorlo = () => {
   useEffect(() => {
     if (khorloRef.current && containerRef.current) {
       gsap.to(khorloRef.current, {
-        rotation: 120, // Rotate a full circle
+        rotation: 120,
+        translateY: -50, // Adjust this value to control the vertical position
         ease: "circ.inOut", // Linear rotation
         scrollTrigger: {
           trigger: containerRef.current, // Trigger when the container is in view
@@ -38,14 +39,7 @@ const Khorlo = () => {
     <section className="relative overflow-hidden">
       {" "}
       {/* Added overflow-hidden here for the section to catch anything */}
-      <div className="relative  w-full text-sm leading-6 tracking-[0.64px] ">
-        <Image
-          alt="blur background"
-          src="/decorative elements/blur bg.png"
-          width={250}
-          height={250}
-          className="md:h-[450] -z-10 right-0 absolute"
-        />
+      <div className="relative h-96  w-full text-sm leading-6 tracking-[0.64px] ">
         <div className="absolute md:right-44 md:top-36 top-36 ml-4">
           <p className="text-[#716B6B] pl-10 z-10   font-[family-name:var(--font-roboto)] w-[270]">
             Each gentle wisp of <br /> smoke invites you inward{" "}
@@ -70,6 +64,7 @@ const Khorlo = () => {
               ref={khorloRef}
               alt="khorlo"
               src="/decorative elements/vwana.png"
+              quality={100} // Ensure high quality for the image
               width={404} // Your image width
               height={404} // Your image height
               // Removed original classes like mix-blend-exclusion, -right-36 etc. as they interfere with new positioning

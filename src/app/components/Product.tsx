@@ -3,14 +3,15 @@ import React from "react";
 
 const Product = () => {
   return (
-    <div className="relative  inline-block w-full max-w-[200px] sm:max-w-[200px] max-sm:max-w-[60px]">
+    <div className="relative   inline-block w-full max-w-[400px] sm:max-w-[800px] max-sm:max-w-[60px]">
       <span className="relative z-10 block">
         <Image
-          width={200}
-          height={470}
+          width={600}
+          height={870}
+          quality={100}
           alt="product"
           src="/decorative elements/INCENSE.png"
-          className="w-full h-auto max-sm:max-w-[90px]"
+          className="md:w-24 w-full h-auto max-sm:max-w-[90px]"
         />
       </span>
       <Image
