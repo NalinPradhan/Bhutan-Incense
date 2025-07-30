@@ -50,17 +50,17 @@ const Intro = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%", // Animation starts when top of container is 80% down the viewport
-          end: "bottom 20%", // Animation completes when bottom of container is 20% down the viewport
-          toggleActions: "play none none reverse", // play on enter, reverse on leave
-          scrub: 1, // Smooth scrubbing
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+          scrub: 1.5,
         },
-        scrub: true,
+        scrub: 1.5,
       });
       tl.to(washi.current, {
         rotation: 44,
         duration: 3,
-        ease: "power2.inOut",
+        ease: "power3.inOut",
       });
       [para1, para2, para3, para4].forEach((ref, idx) => {
         if (ref.current) {
@@ -94,8 +94,8 @@ const Intro = () => {
         }
       },
       {
-        threshold: 0.2, // Trigger when 20% of the element is visible
-        rootMargin: "50px 0px -50px 0px", // Start animation slightly before element is fully visible
+        threshold: 0.2,
+        rootMargin: "50px 0px -50px 0px",
       }
     );
 
@@ -115,7 +115,6 @@ const Intro = () => {
       <div className="px-4 md:px-8 lg:px-12 ">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left: Main content */}
             <div className="space-y-6 w-full pr-15 md:ml-40">
               <h2
                 ref={para1}
@@ -150,7 +149,6 @@ const Intro = () => {
                 </p>
               </div>
             </div>
-            {/* Right: Product image */}
             <div
               ref={containerRef}
               className="flex justify-center relative sm:mt-10 md:bottom-46 bottom-36"
@@ -187,7 +185,7 @@ const Intro = () => {
         width={250}
         height={250}
         quality={100}
-        className="md:h-[450] z-30 -right-0  absolute top-[50em] "
+        className="md:h-[450] z-30 -right-0 hidden md:block  absolute top-[50em] "
       />
     </section>
   );

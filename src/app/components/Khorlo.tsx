@@ -2,45 +2,61 @@
 "use client";
 import Image from "next/image";
 import React, { useRef, useEffect } from "react";
-import { gsap } from "gsap"; // Make sure to uncomment these imports
-import { ScrollTrigger } from "gsap/ScrollTrigger"; // Make sure to uncomment these imports
-// import { ScrollSmoother } from "gsap/ScrollSmoother"; // Not strictly needed for just rotation, but keep if you're using it elsewhere
-// import { useGSAP } from "@gsap/react"; // useGSAP is useful but not strictly necessary for this simple setup
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger
-
+gsap.registerPlugin(ScrollTrigger);
 const Khorlo = () => {
-  const khorloRef = useRef<HTMLImageElement>(null); // Renamed for clarity
-  const containerRef = useRef<HTMLDivElement>(null); // Ref for the overflow-hidden container
+  const khorloRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const para = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    if (para.current) {
+      gsap.fromTo(
+        para.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 1 * 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: para.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  });
 
   useEffect(() => {
     if (khorloRef.current && containerRef.current) {
       gsap.to(khorloRef.current, {
         rotation: 120,
-        translateY: -50, // Adjust this value to control the vertical position
-        ease: "circ.inOut", // Linear rotation
+        translateY: -50,
+        ease: "power3.inOut",
         scrollTrigger: {
-          trigger: containerRef.current, // Trigger when the container is in view
-          start: "top bottom", // Animation starts when the top of the container hits the bottom of the viewport
-          end: "bottom top", // Animation ends when the bottom of the container hits the top of the viewport
-          scrub: true, // Smoothly scrub through the animation based on scroll position
-          // markers: true, // Uncomment for debugging ScrollTrigger
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
         },
       });
     }
 
-    // Clean up ScrollTrigger instances on component unmount
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
   return (
-    <section className="relative overflow-hidden">
+    <section id="s3" className="relative overflow-hidden">
       {" "}
-      {/* Added overflow-hidden here for the section to catch anything */}
       <div className="relative h-96  w-full text-sm leading-6 tracking-[0.64px] ">
-        <div className="absolute md:right-44 md:top-36 top-36 ml-4">
+        <div ref={para} className="absolute md:right-44 md:top-36 top-36 ml-4">
           <p className="text-[#716B6B] pl-10 z-10   font-[family-name:var(--font-roboto)] w-[270]">
             Each gentle wisp of <br /> smoke invites you inward{" "}
           </p>
@@ -49,13 +65,10 @@ const Khorlo = () => {
           </p>
         </div>
 
-        {/* This is the key container for the khorlo image */}
         <div
           ref={containerRef}
-          className="relative w-full h-[500px] flex justify-end items-center overflow-hidden" // Adjust height as needed to give scroll space
+          className="relative w-full h-[500px] flex justify-end items-center overflow-hidden"
         >
-          {/* This div positions the image such that its right edge aligns with the container's right,
-              and then pulls it left by half its width. */}
           <div
             className="absolute  right-0 top-1/2 -translate-y-1/2"
             style={{ marginRight: "-202px" }}
@@ -64,12 +77,10 @@ const Khorlo = () => {
               ref={khorloRef}
               alt="khorlo"
               src="/decorative elements/vwana.png"
-              quality={100} // Ensure high quality for the image
-              width={404} // Your image width
-              height={404} // Your image height
-              // Removed original classes like mix-blend-exclusion, -right-36 etc. as they interfere with new positioning
-              // Added transform-origin-center for consistent rotation
-              className="block  mix-blend-exclusion" // Use transform-gpu for hardware acceleration
+              quality={100}
+              width={404}
+              height={404}
+              className="block  mix-blend-exclusion"
               style={{
                 transformOrigin: "center center",
               }}
