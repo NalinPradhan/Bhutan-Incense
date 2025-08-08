@@ -49,10 +49,9 @@ const Ingredients = () => {
             className="md:w-[200px] w-[100px] absolute -z-10"
           />
         </div>
-        <div className="md:ml-32 ml-12 md:w-[570px] ">
+        <div className="md:ml-32 ml-4 w-full max-w-[400px] md:max-w-[570px] ">
           <h2 className=" md:text-[48px] text-[32px] z-10   font-[family-name:var(--font-cormorant)]">
-            Crafted from the purest of{" "}
-            <span className="text-white lg:text-black">ing</span>
+            Crafted from the purest of <span className="text-white ">ing</span>
             redients
           </h2>
           <div className="md:w-[450px] w-[300px] md:ml-10 ml-6 p-4">
@@ -65,6 +64,15 @@ const Ingredients = () => {
               harmony, and chosen for their power to calm, purify, and awaken.
             </p>
           </div>
+
+          <Image
+            alt="washi"
+            src="/decorative elements/blur bg left.png"
+            width={200}
+            height={200}
+            quality={100}
+            className="-left-15 mt-56 absolute"
+          />
         </div>
         <div className="flex flex-col md:flex-row md:ml-44  ml-20">
           <div className="rounded-full md:mr-[286px] md:w-[180px] w-[120px] mt-[44px] ">

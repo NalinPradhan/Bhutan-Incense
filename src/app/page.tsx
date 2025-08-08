@@ -3,7 +3,9 @@ import Header from "./components/Header";
 import Ingredients from "./components/Ingredients";
 import Intro from "./components/Intro";
 import Khorlo from "./components/Khorlo";
+import Making from "./components/Making";
 import Navbar from "./components/Navbar";
+import Temple from "./components/Temple";
 
 export default function HomePage() {
   // Example: in _app.tsx or a top-level layout
@@ -15,6 +17,8 @@ export default function HomePage() {
       <Intro />
       <Khorlo />
       <Ingredients />
+      <Making />
+      <Temple />
     </div>
   );
 }
