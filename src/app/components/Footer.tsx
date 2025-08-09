@@ -15,7 +15,7 @@ const Footer = () => {
       }}
     >
       {/* Wave shape at the top */}
-      <div className="absolute -top-16 left-0 w-full overflow-hidden leading-none">
+      <div className="absolute -top-15 left-0 w-full overflow-hidden leading-none">
         <svg
           className="relative block w-full h-16"
           xmlns="http://www.w3.org/2000/svg"
