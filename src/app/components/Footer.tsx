@@ -3,7 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <footer
-      className="relative mt-20 text-white"
+      id="Contact"
+      className="relative mt-60 text-white"
       style={{
         backgroundImage: `
           linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.7) 65%, rgba(0,0,0,0.5) 85%, rgba(0,0,0,0.3) 100%),
