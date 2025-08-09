@@ -6,6 +6,8 @@ import Khorlo from "./components/Khorlo";
 import Making from "./components/Making";
 import Navbar from "./components/Navbar";
 import Temple from "./components/Temple";
+import Location from "./components/Location";
+import Footer from "./components/Footer";
 
 export default function HomePage() {
   // Example: in _app.tsx or a top-level layout
@@ -19,6 +21,8 @@ export default function HomePage() {
       <Ingredients />
       <Making />
       <Temple />
+      <Location />
+      <Footer />
     </div>
   );
 }

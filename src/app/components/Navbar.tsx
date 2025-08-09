@@ -5,10 +5,9 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
 const menuItems = [
-  { label: "Home" },
-  { label: "About" },
-  { label: "Services" },
-  { label: "Portfolio" },
+  { label: "Ingredients" },
+  { label: "How to use" },
+  { label: "Location" },
   { label: "Contact" },
 ];
 
@@ -61,6 +60,14 @@ const Navbar: React.FC = () => {
       });
     }
   }, [open]);
+
+  const handleMenuClick = (id: string) => {
+    setOpen(false);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section className="navbar h-24">
@@ -120,12 +127,13 @@ const Navbar: React.FC = () => {
                   ref={(el) => {
                     itemRefs.current[idx] = el;
                   }}
-                  className={`menu-item font-[family-name:var(--font-roboto)] text-base text-gray-600 hover:text-gray-900 transition-colors cursor-pointer ${""}`}
+                  className="menu-item font-[family-name:var(--font-roboto)] text-base text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                   style={{
                     transform: "translateY(100%)",
                     opacity: 0,
                     display: "inline-block",
                   }}
+                  onClick={() => handleMenuClick(item.label)}
                 >
                   {item.label}
                 </li>

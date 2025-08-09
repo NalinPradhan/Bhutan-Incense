@@ -35,7 +35,7 @@ const Ingredients = () => {
   });
   return (
     <section id="s4" className="mt-40">
-      <div>
+      <div id="Ingredients">
         <div className="relative">
           <Image
             alt="flower"
