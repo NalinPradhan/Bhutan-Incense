@@ -20,11 +20,10 @@ const Making = () => {
         {
           opacity: 1,
           scale: 1.15,
-          ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top center",
-            end: "+=100", // fast scroll distance
+            end: "+=100", // extend the scroll range
             scrub: true,
           },
         }
@@ -34,12 +33,11 @@ const Making = () => {
       gsap.to(centerTextRef.current, {
         opacity: 0,
         scale: 0.95, // shrink slightly while fading out
-        ease: "power2.inOut",
         scrollTrigger: {
-          trigger: ".image-block",
-          start: "top+=100 center",
-          end: "top center",
-          scrub: true, // allows reverse animation on scroll up
+          trigger: sectionRef.current,
+          start: "bottom center",
+          end: "bottom top",
+          scrub: true,
         },
       });
 
