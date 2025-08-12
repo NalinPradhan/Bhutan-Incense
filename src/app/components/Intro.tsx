@@ -175,7 +175,7 @@ const Intro = () => {
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[15px] w-[12px] md:top-[338px] md:left-[605px] top-[590px] left-[280px]  absolute z-10"
+                className="md:w-[15px] w-[12px] md:top-[338px] md:left-[605px] top-[590px] left-[280px]  absolute "
               />
               <Image
                 alt="flower"
@@ -187,7 +187,7 @@ const Intro = () => {
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[25px] w-[20px] md:top-[388px] md:left-[688px] top-[650px] left-[125px]  absolute z-10"
+                className="md:w-[25px] w-[20px] md:top-[388px] md:left-[688px] top-[650px] left-[125px]  absolute "
               />
               <Image
                 alt="flower"
@@ -199,7 +199,7 @@ const Intro = () => {
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[32px] w-[32px] md:top-[538px] md:left-[515px] top-[750px] left-[305px]  absolute z-10"
+                className="md:w-[32px] w-[32px] md:top-[538px] md:left-[515px] top-[750px] left-[305px]  absolute "
               />
               <h2
                 ref={para1}

@@ -1,7 +1,31 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+
+import animationData from "@/assets/anime.json";
+import { useInView } from "react-intersection-observer";
+import { useRef, useState, useEffect } from "react";
 
 const Making = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+  const [hasPlayed, setHasPlayed] = useState(false);
+
+  useEffect(() => {
+    if (lottieRef.current && inView && !hasPlayed) {
+      lottieRef.current.play();
+      setHasPlayed(true);
+    }
+    // If you want to stop the animation when not in view, you can add:
+    // else if (lottieRef.current && !inView && !hasPlayed) {
+    //   lottieRef.current.stop();
+    // }
+  }, [inView]);
+
   return (
     <section id="s5">
       <div className="flex md:mt-[400px] justify-center md:justify-end">
@@ -25,6 +49,15 @@ const Making = () => {
           autoPlay
           loop
           muted
+        />
+      </div>
+      <div ref={ref} className="flex justify-center ">
+        <Lottie
+          lottieRef={lottieRef}
+          animationData={animationData}
+          loop={false}
+          autoplay={false}
+          className="w-96 "
         />
       </div>
     </section>
