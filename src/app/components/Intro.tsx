@@ -19,6 +19,7 @@ const Intro = () => {
   const para2 = useRef<HTMLParagraphElement>(null);
   const para3 = useRef<HTMLParagraphElement>(null);
   const para4 = useRef<HTMLParagraphElement>(null);
+  const flower = useRef<HTMLImageElement>(null);
   useGSAP(
     () => {
       gsap.set(washi.current, {
@@ -115,7 +116,91 @@ const Intro = () => {
       <div className="px-4 md:px-8 lg:px-12 ">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-6 w-full pr-15 md:ml-40">
+            <div className="space-y-6 w-full pr-15 md:ml-20">
+              <Image
+                alt="flower"
+                src="/decorative elements/flower.png"
+                ref={flower}
+                quality={100}
+                width={60}
+                height={60}
+                style={{
+                  transformOrigin: "center center",
+                }}
+                className="md:w-[80px] w-[60px] md:top-[238px] md:left-[530px] left-[215px] top-[120px]   absolute "
+              />
+              <Image
+                alt="flower"
+                src="/decorative elements/leaf2.png"
+                ref={flower}
+                quality={100}
+                width={60}
+                height={60}
+                style={{
+                  transformOrigin: "center center",
+                }}
+                className="md:w-[30px] w-[20px] md:top-[398px] top-[200px] left-[25px] md:left-[100px] absolute -z-10"
+              />
+              <Image
+                alt="flower"
+                src="/decorative elements/leaf3.png"
+                ref={flower}
+                quality={100}
+                width={60}
+                height={60}
+                style={{
+                  transformOrigin: "center center",
+                }}
+                className="rotate-90 md:w-[30px] w-[15px] md:top-[738px] top-[650px] left-[385px] md:left-[200px] absolute z-10"
+              />
+              <Image
+                alt="flower"
+                src="/decorative elements/leaf4.png"
+                ref={flower}
+                quality={100}
+                width={60}
+                height={60}
+                style={{
+                  transformOrigin: "center center",
+                }}
+                className="md:w-[20px] w-[20px] md:top-[638px] top-[550px] left-[55px] md:left-[645px] absolute -z-10"
+              />
+              <Image
+                alt="flower"
+                src="/decorative elements/star 1.png"
+                ref={flower}
+                quality={100}
+                width={60}
+                height={60}
+                style={{
+                  transformOrigin: "center center",
+                }}
+                className="md:w-[15px] w-[12px] md:top-[338px] md:left-[605px] top-[590px] left-[280px]  absolute z-10"
+              />
+              <Image
+                alt="flower"
+                src="/decorative elements/honey.png"
+                ref={flower}
+                quality={100}
+                width={60}
+                height={60}
+                style={{
+                  transformOrigin: "center center",
+                }}
+                className="md:w-[25px] w-[20px] md:top-[388px] md:left-[688px] top-[650px] left-[125px]  absolute z-10"
+              />
+              <Image
+                alt="flower"
+                src="/decorative elements/honey2.png"
+                ref={flower}
+                quality={100}
+                width={60}
+                height={60}
+                style={{
+                  transformOrigin: "center center",
+                }}
+                className="md:w-[32px] w-[32px] md:top-[538px] md:left-[515px] top-[750px] left-[305px]  absolute z-10"
+              />
               <h2
                 ref={para1}
                 className=" text-xl md:text-[32px] font-[family-name:var(--font-cormorant)]"
