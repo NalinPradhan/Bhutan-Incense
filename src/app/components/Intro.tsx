@@ -20,8 +20,27 @@ const Intro = () => {
   const para3 = useRef<HTMLParagraphElement>(null);
   const para4 = useRef<HTMLParagraphElement>(null);
   const flower = useRef<HTMLImageElement>(null);
+  const honey = useRef<HTMLImageElement>(null);
+  const honey2 = useRef<HTMLImageElement>(null);
+  const leaf2 = useRef<HTMLImageElement>(null);
+  const leaf3 = useRef<HTMLImageElement>(null);
+  const leaf4 = useRef<HTMLImageElement>(null);
+  const star = useRef<HTMLImageElement>(null);
+
   useGSAP(
     () => {
+      gsap.utils.toArray(".floating-element").forEach((el) => {
+        gsap.to(el as Element, {
+          y: () => gsap.utils.random(-30, 30),
+          x: () => gsap.utils.random(-20, 20),
+          rotation: () => gsap.utils.random(-15, 15),
+          duration: () => gsap.utils.random(2, 4),
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: gsap.utils.random(0, 2),
+        });
+      });
       gsap.set(washi.current, {
         opacity: 1,
         rotation: 0,
@@ -83,7 +102,23 @@ const Intro = () => {
           );
         }
       });
+      const elements = gsap.utils.toArray(".floating-element"); // common class for all
+      elements.forEach((el) => {
+        gsap.to(el as Element, {
+          y: gsap.utils.random(-100, 100), // vertical drift
+          x: gsap.utils.random(-50, 50), // horizontal drift
+          rotation: gsap.utils.random(-30, 30),
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
     },
+
     { scope: containerRef }
   );
 
@@ -100,13 +135,14 @@ const Intro = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const section = sectionRef.current;
+    if (section) {
+      observer.observe(section);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (section) {
+        observer.unobserve(section);
       }
     };
   }, []);
@@ -127,79 +163,79 @@ const Intro = () => {
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[80px] w-[60px] md:top-[238px] md:left-[530px] left-[215px] top-[120px]   absolute "
+                className="floating-element md:w-[80px] w-[60px] md:top-[238px] md:left-[530px] left-[215px] top-[120px]   absolute "
               />
               <Image
-                alt="flower"
+                alt="leaf2"
                 src="/decorative elements/leaf2.png"
-                ref={flower}
+                ref={leaf2}
                 quality={100}
                 width={60}
                 height={60}
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[30px] w-[20px] md:top-[398px] top-[200px] left-[25px] md:left-[100px] absolute -z-10"
+                className="floating-element md:w-[30px] w-[20px] md:top-[398px] top-[200px] left-[25px] md:left-[100px] absolute -z-10"
               />
               <Image
-                alt="flower"
+                alt="leaf3"
                 src="/decorative elements/leaf3.png"
-                ref={flower}
+                ref={leaf3}
                 quality={100}
                 width={60}
                 height={60}
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="rotate-90 md:w-[30px] w-[15px] md:top-[738px] top-[650px] left-[385px] md:left-[200px] absolute z-10"
+                className="floating-element rotate-90 md:w-[30px] w-[15px] md:top-[738px] top-[650px] left-[385px] md:left-[200px] absolute z-10"
               />
               <Image
-                alt="flower"
+                alt="leaf4"
                 src="/decorative elements/leaf4.png"
-                ref={flower}
+                ref={leaf4}
                 quality={100}
                 width={60}
                 height={60}
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[20px] w-[20px] md:top-[638px] top-[550px] left-[55px] md:left-[645px] absolute -z-10"
+                className="floating-element md:w-[20px] w-[20px] md:top-[638px] top-[550px] left-[55px] md:left-[645px] absolute -z-10"
               />
               <Image
-                alt="flower"
+                alt="star"
                 src="/decorative elements/star 1.png"
-                ref={flower}
+                ref={star}
                 quality={100}
                 width={60}
                 height={60}
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[15px] w-[12px] md:top-[338px] md:left-[605px] top-[590px] left-[280px]  absolute "
+                className="floating-element md:w-[15px] w-[12px] md:top-[338px] md:left-[605px] top-[590px] left-[280px]  absolute "
               />
               <Image
-                alt="flower"
+                alt="honey"
                 src="/decorative elements/honey.png"
-                ref={flower}
+                ref={honey}
                 quality={100}
                 width={60}
                 height={60}
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[25px] w-[20px] md:top-[388px] md:left-[688px] top-[650px] left-[125px]  absolute "
+                className="floating-element md:w-[25px] w-[20px] md:top-[388px] md:left-[688px] top-[650px] left-[125px]  absolute "
               />
               <Image
-                alt="flower"
+                alt="honey2"
                 src="/decorative elements/honey2.png"
-                ref={flower}
+                ref={honey2}
                 quality={100}
                 width={60}
                 height={60}
                 style={{
                   transformOrigin: "center center",
                 }}
-                className="md:w-[32px] w-[32px] md:top-[538px] md:left-[515px] top-[750px] left-[305px]  absolute "
+                className="floating-element md:w-[32px] w-[32px] md:top-[538px] md:left-[515px] top-[750px] left-[305px]  absolute "
               />
               <h2
                 ref={para1}

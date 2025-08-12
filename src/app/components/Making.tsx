@@ -24,7 +24,7 @@ const Making = () => {
     // else if (lottieRef.current && !inView && !hasPlayed) {
     //   lottieRef.current.stop();
     // }
-  }, [inView]);
+  }, [inView, hasPlayed]);
 
   return (
     <section id="s5">
@@ -57,7 +57,7 @@ const Making = () => {
           animationData={animationData}
           loop={false}
           autoplay={false}
-          className="w-96 "
+          className="w-80 "
         />
       </div>
     </section>
