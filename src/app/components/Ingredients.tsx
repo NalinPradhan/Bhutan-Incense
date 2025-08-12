@@ -52,7 +52,8 @@ const Ingredients = () => {
         <div className="md:ml-32 ml-4 w-full max-w-[400px] md:max-w-[570px] ">
           <h2 className=" md:text-[48px] text-[32px] z-10   font-[family-name:var(--font-cormorant)]">
             Crafted from the purest of <span className="text-white ">ing</span>
-            redients
+            <span className="md:text-black text-white">red</span>
+            ients
           </h2>
           <div className="md:w-[450px] w-[300px] md:ml-10 ml-6 p-4">
             <p
