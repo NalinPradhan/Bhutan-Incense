@@ -25,7 +25,7 @@ const Making = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top center",
-          end: () => `+=${imageBlockRef.current?.offsetTop ?? 0}`, // End when image starts
+          end: "bottom top",
           scrub: 1.5,
           pin: centerTextRef.current,
           pinSpacing: false,
@@ -44,7 +44,13 @@ const Making = () => {
           scale: 1.15,
           duration: 0.3,
         })
-        // Move down (stays visible, goes behind image due to z-index)
+        // Move down and stay there (remains visible but behind image)
+        .to(centerTextRef.current, {
+          y: 150,
+          scale: 0.95,
+          duration: 0.5,
+        })
+        // Keep it in final position for rest of scroll
         .to(centerTextRef.current, {
           y: 150,
           scale: 0.95,
@@ -56,7 +62,11 @@ const Making = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="s5" className="mt-[400px] relative">
+    <section
+      ref={sectionRef}
+      id="s5"
+      className="mt-[400px] relative overflow-hidden"
+    >
       {/* Centered Text - Lower z-index so it goes behind image */}
       <div
         ref={centerTextRef}
