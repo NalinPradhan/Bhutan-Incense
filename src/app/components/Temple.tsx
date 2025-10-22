@@ -25,7 +25,7 @@ const Making = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top center",
-          end: "bottom top",
+          end: () => `+=${imageBlockRef.current?.offsetTop ?? 600}px`,
           scrub: 1.5,
           pin: centerTextRef.current,
           pinSpacing: false,
@@ -36,25 +36,26 @@ const Making = () => {
       tl.to(centerTextRef.current, {
         opacity: 1,
         scale: 1.15,
-        duration: 0.2,
+        duration: 0.15,
       })
         // Hold
         .to(centerTextRef.current, {
           opacity: 1,
           scale: 1.15,
+          duration: 0.25,
+        })
+        // Move down behind image
+        .to(centerTextRef.current, {
+          y: 150,
+          scale: 0.95,
           duration: 0.3,
         })
-        // Move down and stay there (remains visible but behind image)
+        // Fade out completely while staying in position
         .to(centerTextRef.current, {
+          opacity: 0,
           y: 150,
           scale: 0.95,
-          duration: 0.5,
-        })
-        // Keep it in final position for rest of scroll
-        .to(centerTextRef.current, {
-          y: 150,
-          scale: 0.95,
-          duration: 0.5,
+          duration: 0.3,
         });
     }, sectionRef.current ?? undefined);
 
