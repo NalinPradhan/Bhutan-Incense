@@ -8,66 +8,70 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const Making = () => {
-  const centerTextRef = useRef(null);
-  const sectionRef = useRef(null);
+  const centerTextRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const imageBlockRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
-    const ctx = gsap.context(() => {
-      // Fade & scale in (fast, scrub reversible)
-      gsap.fromTo(
-        centerTextRef.current,
-        { opacity: 0, scale: 1 },
-        {
-          opacity: 1,
-          scale: 1.15,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top center",
-            end: "+=100", // extend the scroll range
-            scrub: true,
-          },
-        }
-      );
+    // Set initial state
+    gsap.set(centerTextRef.current, {
+      opacity: 0,
+      scale: 1,
+      y: 0,
+    });
 
-      // Fade out (also reversible on scroll up)
-      gsap.to(centerTextRef.current, {
-        opacity: 0,
-        scale: 0.95, // shrink slightly while fading out
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "bottom center",
-          end: "bottom top",
-          scrub: true,
+          start: "top center",
+          end: () => `+=${imageBlockRef.current?.offsetTop ?? 0}`, // End when image starts
+          scrub: 1.5,
+          pin: centerTextRef.current,
+          pinSpacing: false,
         },
       });
 
-      // Pin during the white space
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top center",
-        endTrigger: ".image-block",
-        end: "top center",
-        pin: centerTextRef.current,
-        pinSpacing: false,
-      });
-    }, sectionRef);
+      // Fade in and scale
+      tl.to(centerTextRef.current, {
+        opacity: 1,
+        scale: 1.15,
+        duration: 0.2,
+      })
+        // Hold
+        .to(centerTextRef.current, {
+          opacity: 1,
+          scale: 1.15,
+          duration: 0.3,
+        })
+        // Move down (stays visible, goes behind image due to z-index)
+        .to(centerTextRef.current, {
+          y: 150,
+          scale: 0.95,
+          duration: 0.5,
+        });
+    }, sectionRef.current ?? undefined);
 
     return () => ctx.revert();
   }, []);
 
   return (
     <section ref={sectionRef} id="s5" className="mt-[400px] relative">
-      {/* Centered Text */}
+      {/* Centered Text - Lower z-index so it goes behind image */}
       <div
         ref={centerTextRef}
-        className="justify-center font-[family-name:var(--font-cormorant)] text-center text-[26px]  md:text-[42px] text-black"
+        className="justify-center font-[family-name:var(--font-cormorant)] text-center text-[26px] md:text-[42px] text-black relative z-10"
+        style={{ opacity: 0 }}
       >
         <h1>To fill the empty space</h1>
         <p>with life as..</p>
       </div>
 
-      {/* Bottom Image */}
-      <div className="flex justify-center items-center md:mt-[400px] mt-[400px] image-block relative z-30">
+      {/* Bottom Image - Higher z-index */}
+      <div
+        ref={imageBlockRef}
+        className="flex justify-center items-center md:mt-[400px] mt-[400px] image-block relative z-30"
+      >
         <div className="relative md:w-full w-full md:h-[785px] h-[210px]">
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
           <Image
