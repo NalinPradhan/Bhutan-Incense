@@ -66,8 +66,8 @@ const Ingredients = () => {
               className="text-[#716B6B] text-sm leading-6 tracking-[0.64px] mt-4 font-[family-name:var(--font-roboto)]"
               style={{ opacity: 0 }}
             >
-              How do you transform nature's stillness into sacred smoke? With
-              time-honored ingredients drawn from the earth, gathered in
+              How do you transform nature&apos;s stillness into sacred smoke?
+              With time-honored ingredients drawn from the earth, gathered in
               harmony, and chosen for their power to calm, purify, and awaken.
             </p>
           </div>
@@ -118,8 +118,9 @@ const Ingredients = () => {
                 style={{ opacity: 0 }}
               >
                 The poppy flower, once offered in quiet rituals across Himalayan
-                temples, adds a whisper of floral softness to our incense. It's
-                not loud, but deeply felt—an herb that gently draws you inward.
+                temples, adds a whisper of floral softness to our incense.
+                It&apos;s not loud, but deeply felt—an herb that gently draws
+                you inward.
               </p>
             </div>
 
@@ -193,8 +194,8 @@ const Ingredients = () => {
               className="text-[#716B6B] max-w-[280px] text-sm leading-6 tracking-[0.64px] mt-4 font-[family-name:var(--font-roboto)]"
               style={{ opacity: 0 }}
             >
-              Sourced from the towering pines of Bhutan's forests, this bark
-              carries the essence of deep earth and fresh air. Used for
+              Sourced from the towering pines of Bhutan&apos;s forests, this
+              bark carries the essence of deep earth and fresh air. Used for
               centuries in monastic incense, it brings a resinous, grounding
               aroma that connects sky to soil.
             </p>
